@@ -18,30 +18,48 @@
     </head>
     <body>
         <header class="header">
-            <img src="assets/images/logo.svg" alt="logo" />
-            <!-- Font Dropdown -->
-            <div class="dropdown">
-                <button class="dropdown-btn">Sans Serif</button>
-                <div class="dropdown-content">
-                    <a class="dropdown-link" href="#" data-font="Sans Serif"
-                        >Sans Serif</a
-                    >
-                    <a class="dropdown-link" href="#" data-font="Serif"
-                        >Serif</a
-                    >
-                    <a class="dropdown-link" href="#" data-font="Mono">Mono</a>
-                </div>
-            </div>
-            <img
-                src="assets/images/icon-arrow-down.svg"
-                alt="arrow down icon"
-            />
-            <!-- Light/Dark Mode Toggle -->
-            <label class="switch">
-                <input type="checkbox" />
-                <span class="slider"></span>
-            </label>
-            <img src="assets/images/icon-moon.svg" alt="moon icon" />
+            <img class="logo" src="assets/images/logo.svg" alt="logo" />
+            <ul class="preference-controls">
+                <!-- Font Dropdown -->
+                <li class="preference-controls__item dropdown">
+                    <button class="dropdown-toggle-btn">
+                        <span class="dropdown-toggle-btn__text"
+                            >Sans Serif</span
+                        >
+                        <img
+                            class="dropdown-toggle-btn__icon"
+                            src="assets/images/icon-arrow-down.svg"
+                            alt="arrow down icon"
+                        />
+                    </button>
+                    <div class="dropdown-content">
+                        <button
+                            class="dropdown-option-btn"
+                            data-font="Sans Serif"
+                        >
+                            Sans Serif
+                        </button>
+                        <button class="dropdown-option-btn" data-font="Serif">
+                            Serif
+                        </button>
+                        <button class="dropdown-option-btn" data-font="Mono">
+                            Mono
+                        </button>
+                    </div>
+                </li>
+                <!-- Light/Dark Mode Toggle -->
+                <li class="preference-controls__item toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" />
+                        <span class="slider"></span>
+                    </label>
+                    <img
+                        class="toggle-icon"
+                        src="assets/images/icon-moon.svg"
+                        alt="moon icon"
+                    />
+                </li>
+            </ul>
         </header>
         <main class="search-results"></main>
     </body>
