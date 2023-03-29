@@ -16,5 +16,33 @@
 
         <title>Frontend Mentor | Dictionary web app</title>
     </head>
-    <body></body>
+    <body>
+        <header class="header">
+            <img src="assets/images/logo.svg" alt="logo" />
+            <!-- Font Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">Sans Serif</button>
+                <div class="dropdown-content">
+                    <a class="dropdown-link" href="#" data-font="Sans Serif"
+                        >Sans Serif</a
+                    >
+                    <a class="dropdown-link" href="#" data-font="Serif"
+                        >Serif</a
+                    >
+                    <a class="dropdown-link" href="#" data-font="Mono">Mono</a>
+                </div>
+            </div>
+            <img
+                src="assets/images/icon-arrow-down.svg"
+                alt="arrow down icon"
+            />
+            <!-- Light/Dark Mode Toggle -->
+            <label class="switch">
+                <input type="checkbox" />
+                <span class="slider"></span>
+            </label>
+            <img src="assets/images/icon-moon.svg" alt="moon icon" />
+        </header>
+        <main class="search-results"></main>
+    </body>
 </html>
