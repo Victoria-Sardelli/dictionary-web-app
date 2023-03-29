@@ -1,5 +1,6 @@
 "use strict";
 
+// dropdown elements
 const fontDropdown = document.querySelector(".dropdown");
 const fontDropdownBtn = document.querySelector(".dropdown-toggle-btn");
 const fontDropdownBtnText = document.querySelector(
@@ -7,6 +8,9 @@ const fontDropdownBtnText = document.querySelector(
 );
 const fontDropdownContent = document.querySelector(".dropdown-content");
 const fontDropdownOptions = document.querySelectorAll(".dropdown-option-btn");
+// light/dark theme toggle elements
+const checkbox = document.querySelector(".checkbox");
+const slider = document.querySelector(".slider");
 
 /* Show/hide font dropdown when button is clicked */
 fontDropdownBtn.addEventListener("click", () => {
@@ -32,3 +36,11 @@ const hideDropdownIfClickedOutside = function (e) {
         fontDropdownContent.classList.remove("show");
 };
 document.addEventListener("click", hideDropdownIfClickedOutside);
+
+/* Toggle light and dark theme when checkbox is checked */
+const toggleDarkTheme = function () {
+    checkbox.checked
+        ? slider.classList.add("checked-toggle-slider")
+        : slider.classList.remove("checked-toggle-slider");
+};
+checkbox.addEventListener("click", toggleDarkTheme);
