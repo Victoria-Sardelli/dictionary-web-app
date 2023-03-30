@@ -76,12 +76,18 @@
         </header>
         <main class="main">
             <div class="search-container">
-                <form action="/" method="GET" class="form" novalidate>
+                <form
+                    action="/"
+                    method="GET"
+                    class="form"
+                    role="search"
+                    novalidate
+                >
                     <div class="search-bar-container">
                         <input
                             class="search-bar"
-                            type="text"
-                            aria-label="search bar"
+                            type="search"
+                            aria-label="Search for word in dictionary"
                             placeholder="Search for any word..."
                             required
                         />
@@ -92,7 +98,12 @@
                     <span class="error-msg" aria-live="polite"></span>
                 </form>
             </div>
-            <section class="search-results"></section>
+            <section class="search-results">
+                <h1 class="initial-heading">
+                    Use the search bar above to look up any word in the
+                    dictionary!
+                </h1>
+            </section>
         </main>
     </body>
 </html>

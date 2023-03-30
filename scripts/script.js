@@ -1,6 +1,6 @@
 "use strict";
 
-/* Form Submission*/
+/* Form Validation and Submission*/
 const form = document.querySelector(".form");
 const searchBar = document.querySelector(".search-bar");
 const searchError = document.querySelector(".error-msg");
