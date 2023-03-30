@@ -20,20 +20,53 @@ input {
 /* || GENERAL */
 
 :root {
-    --black: #050505;
+    /* all possible colors */
+    --dark-black: #050505;
     --light-black: #1f1f1f;
     --black-gray: #2d2d2d;
-    --dark-gray: #3a3a3a;
+    --very-dark-gray: #3a3a3a;
+    --dark-gray: #838383;
     --gray: #757575;
     --light-gray: #e9e9e9;
     --very-light-gray: #f4f4f4;
     --white: #ffffff;
     --purple: #a445ed;
     --coral: #ff5252;
+
+    /* set defaults - light theme */
+    color-scheme: light;
+
+    --background-color: var(--white);
+    --btn-background-color: var(--white);
+    --dropdown-background-color: var(--white);
+    --dropdown-box-shadow-color: rgba(0, 0, 0, 0.1);
+    --slider-background-color: var(--gray);
+    --dark-toggle-icon-stroke-color: var(--dark-gray);
+}
+
+:root[data-theme="dark"] {
+    /* dark theme */
+    color-scheme: dark;
+
+    --background-color: var(--dark-black);
+    --btn-background-color: var(--dark-black);
+    --dropdown-background-color: var(--light-black);
+    --dropdown-box-shadow-color: var(--purple);
+    --slider-background-color: var(--gray);
+    --dark-toggle-icon-stroke-color: var(--purple);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .theme-toggle-slider,
+    .theme-toggle-slider::before {
+        -webkit-transition: 0.1s;
+        transition: 0.1s;
+    }
 }
 
 body {
     min-height: 100vh;
+    background-color: var(--background-color);
     padding: 1.5rem 1.5rem 3.938rem 1.5rem;
     color: var(--black-gray);
 }
@@ -72,22 +105,23 @@ body {
     padding: 0 0 0 1rem;
 }
 
-/* || DROPDOWN */
+/* || FONT DROPDOWN */
 .dropdown-toggle-btn,
 .dropdown-option-btn {
     border: none;
     cursor: pointer;
-    background-color: var(--white);
 }
 
 .dropdown-toggle-btn {
     display: flex;
     align-items: center;
     height: 100%;
+    background-color: var(--btn-background-color);
 }
 
 .dropdown-option-btn {
     text-align: left;
+    background-color: var(--dropdown-background-color);
 }
 
 .dropdown-option-btn:hover {
@@ -110,7 +144,8 @@ body {
     display: none;
     position: absolute;
     border-radius: 1rem;
-    box-shadow: 0 0.313rem 1.875rem 0 rgba(0, 0, 0, 0.1);
+    background-color: var(--dropdown-background-color);
+    box-shadow: 0 0.313rem 1.875rem 0 var(--dropdown-box-shadow-color);
     margin: 0.656rem 0 0 0;
     padding: 1.5rem 0 1.5rem 1.5rem;
     width: 7.5rem;
@@ -124,28 +159,39 @@ body {
     gap: 1rem;
 }
 
-/* TOGGLE */
+/* DARK THEME TOGGLE */
 
-.toggle-icon {
+.theme-toggle-icon {
     margin: 0 0 0 0.75rem;
     height: 1.25rem;
     width: 1.25rem;
+
+    /* SVG properties */
+    fill: none;
+    stroke: var(--dark-gray);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5;
 }
 
-.toggle {
+.theme-toggle-icon--dark {
+    stroke: var(--dark-toggle-icon-stroke-color);
+}
+
+.theme-toggle-label {
     position: relative;
     display: inline-block;
     width: 2.5rem;
     height: 1.25rem;
 }
 
-.checkbox {
+.theme-toggle-btn {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.slider {
+.theme-toggle-slider {
     border-radius: 0.625rem;
     position: absolute;
     top: 0;
@@ -153,12 +199,10 @@ body {
     bottom: 0;
     right: 0;
     cursor: pointer;
-    background-color: var(--gray);
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
+    background-color: var(--slider-background-color);
 }
 
-.slider::before {
+.theme-toggle-slider::before {
     position: absolute;
     content: "";
     height: 0.875rem;
@@ -167,15 +211,13 @@ body {
     bottom: 0.188rem;
     background-color: var(--white);
     border-radius: 50%;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
 }
 
-.checked-toggle-slider {
+.theme-toggle-slider--dark {
     background-color: var(--purple);
 }
 
-.checked-toggle-slider::before {
+.theme-toggle-slider--dark::before {
     /* 1.063rem = circle width (0.875rem) + desired distance from right (0.188rem) */
     left: calc(100% - 1.063rem);
 }

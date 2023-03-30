@@ -11,9 +11,11 @@
             href="./assets/images/favicon-32x32.png"
         />
 
+        <script src="theme-toggle.js"></script>
         <link rel="stylesheet" href="style.css" />
         <script src="script.js" defer></script>
 
+        <meta name="color-scheme" content="light dark" />
         <title>Frontend Mentor | Dictionary web app</title>
     </head>
     <body>
@@ -49,15 +51,25 @@
                 </li>
                 <!-- Light/Dark Mode Toggle -->
                 <li class="preference-controls__item toggle-container">
-                    <label class="toggle">
-                        <input class="checkbox" type="checkbox" />
-                        <span class="slider"></span>
+                    <label class="theme-toggle-label">
+                        <button
+                            class="theme-toggle-btn"
+                            type="button"
+                            aria-label="auto"
+                            aria-live="polite"
+                        ></button>
+                        <span class="theme-toggle-slider"></span>
                     </label>
-                    <img
-                        class="toggle-icon"
-                        src="assets/images/icon-moon.svg"
-                        alt="moon icon"
-                    />
+                    <svg
+                        class="theme-toggle-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 22 22"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M1 10.449a10.544 10.544 0 0 0 19.993 4.686C11.544 15.135 6.858 10.448 6.858 1A10.545 10.545 0 0 0 1 10.449Z"
+                        />
+                    </svg>
                 </li>
             </ul>
         </header>
