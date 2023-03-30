@@ -73,6 +73,25 @@
                 </li>
             </ul>
         </header>
-        <main class="search-results"></main>
+        <main class="main">
+            <div class="search-container">
+                <form action="/" method="GET" class="form" novalidate>
+                    <div class="search-bar-container">
+                        <input
+                            class="search-bar"
+                            type="text"
+                            aria-label="search bar"
+                            placeholder="Search for any word..."
+                            required
+                        />
+                        <button type="submit" class="search-btn">
+                            <img src="assets/images/icon-search.svg" />
+                        </button>
+                    </div>
+                    <span class="error-msg" aria-live="polite"></span>
+                </form>
+            </div>
+            <section class="search-results"></section>
+        </main>
     </body>
 </html>
