@@ -13,6 +13,18 @@ searchBar.addEventListener("input", (e) => {
     }
 });
 
+/* Displays 404 message when word could not be found by dictionary api */
+const handle404 = function (data) {
+    console.log("Aw, there was a 404 error...");
+    console.log(data);
+};
+
+/* Displays word-related information receieved from dictionary api */
+const displayResults = function (data) {
+    console.log("Yay! You got data.");
+    console.log(data);
+};
+
 form.addEventListener("submit", (e) => {
     if (!searchBar.validity.valid) {
         // show error message if user submitted empty search
@@ -21,7 +33,16 @@ form.addEventListener("submit", (e) => {
         searchBar.classList.add("error");
     } else {
         // get data using user input
-        console.log(`get data: ${searchBar.value}`);
+        fetch(
+            `https://api.dictionaryapi.dev/api/v2/entries/en/${searchBar.value}`
+        )
+            .then(async (response) => {
+                const data = await response.json();
+
+                if (response.ok) displayResults(data);
+                else handle404(data);
+            })
+            .catch((error) => console.error(error));
     }
     e.preventDefault();
 });
