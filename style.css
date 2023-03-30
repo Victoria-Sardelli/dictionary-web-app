@@ -277,11 +277,33 @@ body {
 }
 
 /* || SEARCH RESULTS */
+.search-results {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+/* h1 that appears on inital page load */
 .initial-heading {
     font-size: 1rem;
     font-weight: inherit;
     font-style: inherit;
     text-align: center;
     margin: 2rem auto 0 auto;
-    width: 80%;
+}
+
+/* 404 error content */
+.emoji {
+    font-size: 3rem;
+    margin: 2rem 0 0 0;
+}
+
+.search-error-title {
+    margin: 1.5rem 0 0 0;
+    font-size: 1.25rem;
+}
+
+.search-error-subtitle {
+    margin: 1.125rem 0 0 0;
+    text-align: center;
 }
