@@ -37,6 +37,32 @@ const handle404 = function (data) {
     searchResultsSection.appendChild(container404Content);
 };
 
+/* 
+Creates elements representing synonym or antonym lists, which use 
+the same html structure and styles, and returns container element
+*/
+const getSynonymsAntonymsElem = function (title, synonymsAntonymsData) {
+    const listTitle = document.createElement("h3");
+    listTitle.className = "list-title";
+    listTitle.textContent = title;
+
+    const list = document.createElement("ul");
+    list.className = "synonyms-antonyms-list";
+
+    for (const word of synonymsAntonymsData) {
+        const listItem = document.createElement("li");
+        listItem.className = "synonym-antonym";
+        listItem.textContent = word;
+        list.append(listItem);
+    }
+
+    const listContainer = document.createElement("div");
+    listContainer.className = "synonyms-antonyms-container";
+    listContainer.append(listTitle);
+    listContainer.append(list);
+    return listContainer;
+};
+
 /* Displays word-related information receieved from dictionary api */
 const displayResults = function (data) {
     removeChildren(searchResultsSection);
@@ -56,12 +82,54 @@ const displayResults = function (data) {
             const meaningContainer = document.createElement("section");
             meaningContainer.className = "meaning-container";
 
+            // append part of speech
             const partOfSpeech = document.createElement("h2");
             partOfSpeech.className = "part-of-speech";
-
             partOfSpeech.textContent = meaning.partOfSpeech;
-
             meaningContainer.appendChild(partOfSpeech);
+
+            //append title of definitions list
+            const definitionsListTitle = document.createElement("h3");
+            definitionsListTitle.className = "list-title";
+            definitionsListTitle.textContent = "Meaning";
+
+            // get definitions, synonyms, and antonyms
+            const definitionsList = document.createElement("ul");
+            definitionsList.className = "definitions-list";
+
+            for (const definitionItem of meaning.definitions) {
+                const definitionsListItem = document.createElement("li");
+                definitionsListItem.className = "definition";
+                definitionsListItem.textContent = definitionItem.definition;
+                definitionsList.append(definitionsListItem);
+
+                if (definitionItem.example) {
+                    const exampleListItem = document.createElement("li");
+                    exampleListItem.className = "example";
+                    exampleListItem.textContent = `"${definitionItem.example}`;
+                    definitionsList.append(exampleListItem);
+                }
+            }
+            meaningContainer.append(definitionsListTitle);
+            meaningContainer.append(definitionsList);
+
+            if (meaning.synonyms.length > 0) {
+                const synonymsListContainer = getSynonymsAntonymsElem(
+                    "Synonyms",
+                    meaning.synonyms
+                );
+                meaningContainer.append(synonymsListContainer);
+            }
+
+            if (meaning.antonyms.length > 0) {
+                const synonymsListContainer = getSynonymsAntonymsElem(
+                    "Antonyms",
+                    meaning.antonyms
+                );
+                meaningContainer.append(synonymsListContainer);
+                meaningContainer.append(antonymsContainer);
+            }
+
             article.append(meaningContainer);
         }
 

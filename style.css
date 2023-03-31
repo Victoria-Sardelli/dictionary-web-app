@@ -424,6 +424,7 @@ body {
     font-size: 1.125rem;
     font-weight: bold;
     font-style: italic;
+    margin: 0 0 2rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -436,4 +437,44 @@ body {
     max-width: 16.625rem;
     height: 0.063rem;
     background-color: var(--very-light-gray);
+}
+
+.list-title {
+    color: var(--gray);
+}
+
+.definitions-list {
+    padding: 0 0 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.813rem;
+    margin: 1rem 0 0 0;
+}
+
+.definition {
+    font-size: 0.938rem;
+    line-height: 1.5rem;
+}
+
+.definition::marker {
+    color: var(--purple);
+}
+
+.example {
+    list-style-type: none;
+    color: var(--gray);
+}
+
+.synonyms-antonyms-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    margin: 1.5rem 0 0 0;
+}
+
+.synonym-antonym {
+    color: var(--purple);
+    font-size: 0.938rem;
+    line-height: 1.5rem;
+    list-style-type: none;
 }
