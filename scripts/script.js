@@ -133,7 +133,6 @@ const displayResults = function (data) {
                     "Antonyms",
                     meaning.antonyms
                 );
-                meaningContainer.append(synonymsListContainer);
                 meaningContainer.append(antonymsListContainer);
             }
 
