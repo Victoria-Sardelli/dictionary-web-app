@@ -63,6 +63,13 @@ const getSynonymsAntonymsElem = function (title, synonymsAntonymsData) {
     return listContainer;
 };
 
+const initElemWithText = function ({ elemType, elemClass, elemText }) {
+    const elem = document.createElement(elemType);
+    elem.className = elemClass;
+    elem.textContent = elemText;
+    return elem;
+};
+
 /* Displays word-related information receieved from dictionary api */
 const displayResults = function (data) {
     removeChildren(searchResultsSection);
@@ -122,12 +129,12 @@ const displayResults = function (data) {
             }
 
             if (meaning.antonyms.length > 0) {
-                const synonymsListContainer = getSynonymsAntonymsElem(
+                const antonymsListContainer = getSynonymsAntonymsElem(
                     "Antonyms",
                     meaning.antonyms
                 );
                 meaningContainer.append(synonymsListContainer);
-                meaningContainer.append(antonymsContainer);
+                meaningContainer.append(antonymsListContainer);
             }
 
             article.append(meaningContainer);
