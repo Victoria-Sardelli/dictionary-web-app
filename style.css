@@ -197,9 +197,14 @@ body {
 }
 
 .theme-toggle-btn {
-    opacity: 0;
-    width: 0;
-    height: 0;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    border-radius: 0.625rem;
+    border: 0;
 }
 
 .theme-toggle-slider {
