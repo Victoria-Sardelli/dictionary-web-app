@@ -80,9 +80,19 @@ const createPlayButton = function (audio, phoneticNum) {
 
     btn.appendChild(svgElem);
 
+    const audioObj = new Audio(audio);
     // play audio when button is clicked
     btn.addEventListener("click", () => {
-        new Audio(audio).play();
+        audioObj.play();
+    });
+
+    // apply class to button when audio is playing
+    audioObj.addEventListener("play", () => {
+        btn.classList.add("play-btn--playing");
+    });
+    // remove class when audio stops
+    audioObj.addEventListener("ended", () => {
+        btn.classList.remove("play-btn--playing");
     });
 
     return btn;

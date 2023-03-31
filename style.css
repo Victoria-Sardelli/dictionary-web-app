@@ -253,9 +253,13 @@ body {
     width: 100%;
     border-radius: 1rem;
     border: none;
-    outline: none;
     background-color: var(--search-bar-color);
     padding: 0 0 0 1.5rem;
+}
+
+.search-bar:focus {
+    outline: none;
+    border: 0.063rem solid var(--purple);
 }
 
 .search-bar.error {
@@ -350,8 +354,13 @@ body {
     opacity: 1;
 }
 
+.play-btn--playing .play-btn__svg__circle {
+    opacity: 0.75;
+}
+
 .play-btn:hover .play-btn__svg__path,
-.play-btn:focus .play-btn__svg__path {
+.play-btn:focus .play-btn__svg__path,
+.play-btn--playing .play-btn__svg__path {
     fill: var(--white);
 }
 
