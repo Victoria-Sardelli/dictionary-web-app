@@ -55,7 +55,7 @@ const createSVGPlayBtn = function () {
     circle.classList.add("play-btn__svg__circle");
     circle.setAttribute("cx", "37.5");
     circle.setAttribute("cy", "37.5");
-    circle.setAttribute("r", "37.5");
+    circle.setAttribute("r", "35.5");
     circle.setAttribute("opacity", ".25");
     g.appendChild(circle);
 
