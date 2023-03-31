@@ -1,3 +1,5 @@
+"use strict";
+
 const storageKey = "theme-preference";
 
 // dark theme toggle elements

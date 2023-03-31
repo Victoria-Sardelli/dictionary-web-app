@@ -1,3 +1,5 @@
+"use strict";
+
 // dropdown elements
 const fontDropdown = document.querySelector(".dropdown");
 const fontDropdownBtn = document.querySelector(".dropdown-toggle-btn");
