@@ -17,6 +17,14 @@ input {
     font-size: 100%;
 }
 
+h1,
+h2 {
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+}
+
 /* || GENERAL */
 
 :root {
@@ -279,15 +287,14 @@ body {
 /* || SEARCH RESULTS */
 .search-results {
     text-align: center;
-    width: 80%;
-    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 /* h1 that appears on inital page load */
 .initial-heading {
-    font-size: 1rem;
-    font-weight: inherit;
-    font-style: inherit;
     text-align: center;
     margin: 2rem auto 0 auto;
 }
@@ -306,4 +313,88 @@ body {
 .search-error-subtitle {
     margin: 1.125rem 0 0 0;
     text-align: center;
+}
+
+/* valid response content */
+.word-info-container {
+    text-align: left;
+}
+
+.word-info-header {
+    display: flex;
+}
+
+.word {
+    font-size: 2rem;
+    margin: 0 0 0.563rem 0;
+}
+
+.play-btn {
+    height: 3rem;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
+.play-btn__svg {
+    height: 100%;
+    width: 100%;
+}
+
+.play-btn__svg__g {
+    fill: var(--purple);
+}
+
+.play-btn:hover .play-btn__svg__circle,
+.play-btn:focus .play-btn__svg__circle {
+    opacity: 1;
+}
+
+.play-btn:hover .play-btn__svg__path,
+.play-btn:focus .play-btn__svg__path {
+    fill: var(--white);
+}
+
+.phonetic {
+    color: var(--purple);
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+}
+
+/* Change layout based on presence of one phonetic or many phonetics */
+.word-info-header--one-phonetic {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.word-info-header--many-phonetics {
+    flex-direction: column;
+}
+
+.many-phonetics {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.many-phonetics__phonetic-container {
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    position: relative;
+    gap: 0.5rem;
+}
+
+/* puts dividing border between phonetic items */
+.many-phonetics__phonetic-container:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -0.75rem; /* half of gap between phonetic containers (set by many-phonetics) */
+    top: 25%;
+    height: 50%;
+    border-right: 1px solid gray;
+}
+
+.play-btn--many-phonetics {
+    height: 1.5rem;
 }
