@@ -354,8 +354,8 @@ body {
     fill: var(--purple);
 }
 
-.play-btn:hover .play-btn__svg__circle,
-.play-btn:focus .play-btn__svg__circle {
+.play-btn:not(.play-btn--playing):hover .play-btn__svg__circle,
+.play-btn:not(.play-btn--playing):focus .play-btn__svg__circle {
     opacity: 1;
 }
 
