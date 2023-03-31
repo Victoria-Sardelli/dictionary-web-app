@@ -329,6 +329,7 @@ body {
     text-align: left;
 }
 
+/* || SEARCH RESULT HEADER (WORD AND PHONETICS) */
 .word-info-header {
     display: flex;
 }
@@ -375,7 +376,7 @@ body {
     line-height: 1.5rem;
 }
 
-/* Change layout based on presence of one phonetic or many phonetics */
+/* Change phonetics layout based on presence of one phonetic or many phonetics */
 .word-info-header--one-phonetic {
     flex-direction: row;
     justify-content: space-between;
@@ -412,4 +413,27 @@ body {
 .play-btn--many-phonetics {
     height: 1.5rem;
     width: 1.5rem;
+}
+
+/* || SEARCH RESULT MAIN CONTENT (PART OF SPEECH, MEANINGS, SYNONYMS) */
+.meaning-container {
+    margin: 2rem 0 0 0;
+}
+
+.part-of-speech {
+    font-size: 1.125rem;
+    font-weight: bold;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.part-of-speech::after {
+    content: "";
+    flex: 1;
+    max-width: 16.625rem;
+    height: 0.063rem;
+    background-color: var(--very-light-gray);
 }

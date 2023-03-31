@@ -47,18 +47,23 @@ const displayResults = function (data) {
         const article = document.createElement("article");
         article.className = "word-info-container";
 
+        // append word and phonetics info to top of article
         const header = getSearchResultHeaderElem(wordItem);
         article.appendChild(header);
 
         // add definition-related information to article. There may be multiple definitions
-        /*for (const meaning of wordItem.meanings) {
+        for (const meaning of wordItem.meanings) {
+            const meaningContainer = document.createElement("section");
+            meaningContainer.className = "meaning-container";
+
             const partOfSpeech = document.createElement("h2");
             partOfSpeech.className = "part-of-speech";
 
             partOfSpeech.textContent = meaning.partOfSpeech;
 
-            article.appendChild(partOfSpeech);
-        }*/
+            meaningContainer.appendChild(partOfSpeech);
+            article.append(meaningContainer);
+        }
 
         // display article in search results section
         searchResultsSection.appendChild(article);
