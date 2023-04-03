@@ -211,7 +211,6 @@ const appInit = function () {
 
     /* If user visit page with search params already in URL, then search for given word */
     const params = new URL(document.location).searchParams;
-    console.log(params);
     if (params.has("search")) {
         searchBar.value = params.get("search");
         form.requestSubmit(); // run form's onsubmit handler
