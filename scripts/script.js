@@ -14,23 +14,36 @@ const removeChildren = function (element) {
     }
 };
 
+const initElemWithText = function ({ elemType, elemClass, elemText }) {
+    const elem = document.createElement(elemType);
+    elem.className = elemClass;
+    elem.textContent = elemText;
+    return elem;
+};
+
 /* Displays 404 message when word could not be found by dictionary api */
 const handle404 = function (data) {
     const container404Content = document.createElement("div");
 
-    const emoji = document.createElement("p");
-    emoji.className = "emoji";
-    emoji.textContent = "😕";
+    const emoji = initElemWithText({
+        elemType: "p",
+        elemClass: "emoji",
+        elemText: "😕",
+    });
 
-    const title = document.createElement("h1");
-    title.className = "search-error-title";
-    title.textContent = data.title ?? "No definitions found";
+    const title = initElemWithText({
+        elemType: "h1",
+        elemClass: "search-error-title",
+        elemText: data.title ?? "No definitions found",
+    });
 
-    const subtitle = document.createElement("p");
-    subtitle.className = "search-error-subtitle";
-    subtitle.textContent = `${
-        data.message ?? "Sorry, we couldn't find any definitions."
-    } ${data.resolution ?? "Please try the search again later."}`;
+    const subtitle = initElemWithText({
+        elemType: "p",
+        elemClass: "search-error-subtitle",
+        elemText: `${
+            data.message ?? "Sorry, we couldn't find any definitions."
+        } ${data.resolution ?? "Please try the search again later."}`,
+    });
 
     container404Content.append(emoji, title, subtitle);
     removeChildren(searchResultsSection);
@@ -42,17 +55,21 @@ Creates elements representing synonym or antonym lists, which use
 the same html structure and styles, and returns container element
 */
 const getSynonymsAntonymsElem = function (title, synonymsAntonymsData) {
-    const listTitle = document.createElement("h3");
-    listTitle.className = "list-title";
-    listTitle.textContent = title;
+    const listTitle = initElemWithText({
+        elemType: "h3",
+        elemClass: "list-title",
+        elemText: title,
+    });
 
     const list = document.createElement("ul");
     list.className = "synonyms-antonyms-list";
 
     for (const word of synonymsAntonymsData) {
-        const listItem = document.createElement("li");
-        listItem.className = "synonym-antonym";
-        listItem.textContent = word;
+        const listItem = initElemWithText({
+            elemType: "li",
+            elemClass: "synonym-antonym",
+            elemText: word,
+        });
         list.append(listItem);
     }
 
@@ -61,13 +78,6 @@ const getSynonymsAntonymsElem = function (title, synonymsAntonymsData) {
     listContainer.append(listTitle);
     listContainer.append(list);
     return listContainer;
-};
-
-const initElemWithText = function ({ elemType, elemClass, elemText }) {
-    const elem = document.createElement(elemType);
-    elem.className = elemClass;
-    elem.textContent = elemText;
-    return elem;
 };
 
 /* Displays word-related information receieved from dictionary api */
@@ -90,33 +100,40 @@ const displayResults = function (data) {
             meaningContainer.className = "meaning-container";
 
             // append part of speech
-            const partOfSpeech = document.createElement("h2");
-            partOfSpeech.className = "part-of-speech";
-            partOfSpeech.textContent = meaning.partOfSpeech;
+            const partOfSpeech = initElemWithText({
+                elemType: "h2",
+                elemClass: "part-of-speech",
+                elemText: meaning.partOfSpeech,
+            });
             meaningContainer.appendChild(partOfSpeech);
 
-            //append title of definitions list
-            const definitionsListTitle = document.createElement("h3");
-            definitionsListTitle.className = "list-title";
-            definitionsListTitle.textContent = "Meaning";
-
-            // get definitions, synonyms, and antonyms
+            // append definitions, synonyms, and antonyms
             const definitionsList = document.createElement("ul");
             definitionsList.className = "definitions-list";
 
             for (const definitionItem of meaning.definitions) {
-                const definitionsListItem = document.createElement("li");
-                definitionsListItem.className = "definition";
-                definitionsListItem.textContent = definitionItem.definition;
+                const definitionsListItem = initElemWithText({
+                    elemType: "li",
+                    elemClass: "definition",
+                    elemText: definitionItem.definition,
+                });
                 definitionsList.append(definitionsListItem);
 
                 if (definitionItem.example) {
-                    const exampleListItem = document.createElement("li");
-                    exampleListItem.className = "example";
-                    exampleListItem.textContent = `"${definitionItem.example}`;
+                    const exampleListItem = initElemWithText({
+                        elemType: "li",
+                        elemClass: "example",
+                        elemText: `"${definitionItem.example}"`,
+                    });
                     definitionsList.append(exampleListItem);
                 }
             }
+
+            const definitionsListTitle = initElemWithText({
+                elemType: "h3",
+                elemClass: "list-title",
+                elemText: "Meaning",
+            });
             meaningContainer.append(definitionsListTitle);
             meaningContainer.append(definitionsList);
 
@@ -135,10 +152,8 @@ const displayResults = function (data) {
                 );
                 meaningContainer.append(antonymsListContainer);
             }
-
             article.append(meaningContainer);
         }
-
         // display article in search results section
         searchResultsSection.appendChild(article);
     }
