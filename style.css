@@ -135,7 +135,8 @@ body {
     background-color: var(--dropdown-background-color);
 }
 
-.dropdown-option-btn:hover {
+.dropdown-option-btn:hover,
+.dropdown-option-btn:focus {
     color: var(--purple);
 }
 
@@ -484,6 +485,7 @@ body {
     text-decoration: none;
 }
 
-.synonym-antonym:hover {
+.synonym-antonym:hover,
+.synonym-antonym:focus {
     text-decoration: underline;
 }
