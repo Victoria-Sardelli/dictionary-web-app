@@ -21,6 +21,30 @@ const initElemWithText = function ({ elemType, elemClass, elemText }) {
     return elem;
 };
 
+/* Gets definitions from dictionary api and displays results on screen */
+const runSearch = function (e) {
+    console.log("run search");
+    if (!searchBar.validity.valid) {
+        // show error message if user submitted empty search
+        searchError.textContent = "Whoops, can't be empty...";
+        searchError.classList.add("active");
+        searchBar.classList.add("error");
+    } else {
+        // get data using user input
+        fetch(
+            `https://api.dictionaryapi.dev/api/v2/entries/en/${searchBar.value}`
+        )
+            .then(async (response) => {
+                const data = await response.json();
+
+                if (response.ok) displayResults(data);
+                else handle404(data);
+            })
+            .catch((error) => console.error(error));
+    }
+    e.preventDefault();
+};
+
 /* Displays 404 message when word could not be found by dictionary api */
 const handle404 = function (data) {
     const container404Content = document.createElement("div");
@@ -51,8 +75,8 @@ const handle404 = function (data) {
 };
 
 /* 
-Creates elements representing synonym or antonym lists, which use 
-the same html structure and styles, and returns container element
+Creates elements to hold synonym lists or antonym lists (both use 
+the same html structure and styles), and returns container element
 */
 const getSynonymsAntonymsElem = function (title, synonymsAntonymsData) {
     const listTitle = initElemWithText({
@@ -65,11 +89,22 @@ const getSynonymsAntonymsElem = function (title, synonymsAntonymsData) {
     list.className = "synonyms-antonyms-list";
 
     for (const word of synonymsAntonymsData) {
-        const listItem = initElemWithText({
-            elemType: "li",
+        // create link within list item
+        const listItem = document.createElement("li");
+        listItem.className = "synonym-antonym-list-item";
+
+        const link = initElemWithText({
+            elemType: "a",
             elemClass: "synonym-antonym",
             elemText: word,
         });
+        // link will load same page but with new word to search when clicked
+        const newSearchUrl = new URL(document.location);
+        newSearchUrl.searchParams.delete("search");
+        newSearchUrl.searchParams.append("search", word);
+        link.href = newSearchUrl;
+
+        listItem.append(link);
         list.append(listItem);
     }
 
@@ -159,34 +194,28 @@ const displayResults = function (data) {
     }
 };
 
-/* Gets definitions from dictionary api and displays results on screen */
-form.addEventListener("submit", (e) => {
-    if (!searchBar.validity.valid) {
-        // show error message if user submitted empty search
-        searchError.textContent = "Whoops, can't be empty...";
-        searchError.classList.add("active");
-        searchBar.classList.add("error");
-    } else {
-        // get data using user input
-        fetch(
-            `https://api.dictionaryapi.dev/api/v2/entries/en/${searchBar.value}`
-        )
-            .then(async (response) => {
-                const data = await response.json();
+const appInit = function () {
+    /* set up event listeners */
 
-                if (response.ok) displayResults(data);
-                else handle404(data);
-            })
-            .catch((error) => console.error(error));
-    }
-    e.preventDefault();
-});
+    // Will search for word in dictionary when user submits search input
+    form.addEventListener("submit", runSearch);
 
-/* Removes warning styles upon user input when search bar has valid content */
-searchBar.addEventListener("input", (e) => {
-    if (searchBar.validity.valid) {
-        searchError.textContent = "";
-        searchError.classList.remove("active");
-        searchBar.classList.remove("error");
+    // Removes warning styles upon user input when search bar has valid content
+    searchBar.addEventListener("input", (e) => {
+        if (searchBar.validity.valid) {
+            searchError.textContent = "";
+            searchError.classList.remove("active");
+            searchBar.classList.remove("error");
+        }
+    });
+
+    /* If user visit page with search params already in URL, then search for given word */
+    const params = new URL(document.location).searchParams;
+    console.log(params);
+    if (params.has("search")) {
+        searchBar.value = params.get("search");
+        form.requestSubmit(); // run form's onsubmit handler
     }
-});
+};
+
+appInit();

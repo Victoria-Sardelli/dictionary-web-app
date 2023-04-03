@@ -472,9 +472,18 @@ body {
     margin: 1.5rem 0 0 0;
 }
 
+.synonym-antonym-list-item {
+    line-height: 1.5rem;
+    list-style-type: none;
+}
+
 .synonym-antonym {
     color: var(--purple);
     font-size: 0.938rem;
-    line-height: 1.5rem;
-    list-style-type: none;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.synonym-antonym:hover {
+    text-decoration: underline;
 }
