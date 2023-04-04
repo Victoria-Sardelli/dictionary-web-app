@@ -467,11 +467,12 @@ body {
     margin: 0 0 0 0.5rem;
 }
 
-/* Definitions list section */
+/* Definitions list and synonym/antonyms list titles */
 .list-title {
     color: var(--gray);
 }
 
+/* Definition list section */
 .definitions-list {
     padding: 0 0 0 1.5rem;
     display: flex;
