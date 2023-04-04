@@ -188,6 +188,36 @@ const displayResults = function (data) {
             }
             article.append(meaningContainer);
         }
+        // append source url(s) at bottom of article
+        if (wordItem.sourceUrls.length > 0) {
+            const sourceUrlsContainer = document.createElement("div");
+            sourceUrlsContainer.className = "source-urls-container";
+
+            // append sources section header to container
+            const sourceUrlsHeading = initElemWithText({
+                elemType: "h4",
+                elemClass: "source-urls-heading",
+                elemText: "Source",
+            });
+            sourceUrlsContainer.append(sourceUrlsHeading);
+
+            // append source url to container
+            for (const sourceUrl of wordItem.sourceUrls) {
+                console.log(sourceUrl);
+                const sourceElem = initElemWithText({
+                    elemType: "a",
+                    elemClass: "source-url",
+                    elemText: sourceUrl,
+                });
+                sourceElem.href = sourceUrl;
+                sourceElem.target = "_blank";
+
+                sourceUrlsContainer.append(sourceElem);
+            }
+
+            article.append(sourceUrlsContainer);
+        }
+
         // display article in search results section
         searchResultsSection.appendChild(article);
     }

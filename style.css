@@ -327,6 +327,9 @@ body {
 
 /* valid response content */
 .word-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     text-align: left;
 }
 
@@ -416,11 +419,7 @@ body {
     width: 1.5rem;
 }
 
-/* || SEARCH RESULT MAIN CONTENT (PART OF SPEECH, MEANINGS, SYNONYMS) */
-.meaning-container {
-    margin: 2rem 0 0 0;
-}
-
+/* || SEARCH RESULT MAIN CONTENT (PART OF SPEECH, MEANINGS, SYNONYMS, ANTONYMS, SOURCE) */
 .part-of-speech {
     font-size: 1.125rem;
     font-weight: bold;
@@ -432,14 +431,43 @@ body {
     gap: 1rem;
 }
 
-.part-of-speech::after {
+.part-of-speech::after,
+.source-urls-container::before {
     content: "";
     flex: 1;
-    max-width: 16.625rem;
-    height: 0.063rem;
+    min-height: 0.063rem;
     background-color: var(--very-light-gray);
 }
 
+.source-urls-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.875rem;
+}
+
+.source-urls-heading {
+    margin: 1.5rem 0 0 0;
+    color: var(--gray);
+    text-decoration: underline;
+}
+
+.source-url {
+    color: var(--black-gray);
+    margin: 0.5rem 0 0 0;
+}
+
+.source-url::after {
+    content: "";
+    display: inline-block;
+    background-image: url(assets/images/icon-new-window.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 0.75rem;
+    width: 0.75rem;
+    margin: 0 0 0 0.5rem;
+}
+
+/* Definitions list section */
 .list-title {
     color: var(--gray);
 }
@@ -465,6 +493,8 @@ body {
     list-style-type: none;
     color: var(--gray);
 }
+
+/* Synonyms and antonyms section*/
 
 .synonyms-antonyms-container {
     display: grid;
