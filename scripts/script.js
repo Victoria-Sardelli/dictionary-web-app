@@ -23,7 +23,6 @@ const initElemWithText = function ({ elemType, elemClass, elemText }) {
 
 /* Gets definitions from dictionary api and displays results on screen */
 const runSearch = function (e) {
-    console.log("run search");
     if (!searchBar.validity.valid) {
         // show error message if user submitted empty search
         searchError.textContent = "Whoops, can't be empty...";
