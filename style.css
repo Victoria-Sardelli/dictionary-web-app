@@ -42,7 +42,14 @@ h2 {
     --purple: #a445ed;
     --coral: #ff5252;
 
-    /* set defaults - light theme */
+    /* all possible fonts */
+    --mono: "Inconsolata", monospace;
+    --sans-serif: "Inter", sans-serif;
+    --serif: "Lora", serif;
+
+    /* set defaults - sans-serif, light theme */
+    font-family: var(--sans-serif);
+
     color-scheme: light;
 
     --color: var(--black-gray);
@@ -65,6 +72,14 @@ h2 {
     --slider-background-color: var(--gray);
     --dark-toggle-icon-stroke-color: var(--purple);
     --search-bar-color: var(--light-black);
+}
+
+:root[data-font="Mono"] {
+    font-family: var(--mono);
+}
+
+:root[data-font="Serif"] {
+    font-family: var(--serif);
 }
 
 @media (prefers-reduced-motion: no-preference) {

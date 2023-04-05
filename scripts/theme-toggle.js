@@ -1,14 +1,14 @@
 "use strict";
 
-const storageKey = "theme-preference";
+const storageKeyTheme = "theme-preference";
 
 // dark theme toggle elements
 let slider, toggleIcon;
 
 /* Get theme preference from local storage if exists, otherwise check */
 const getColorPreference = function () {
-    if (localStorage.getItem(storageKey)) {
-        return localStorage.getItem(storageKey);
+    if (localStorage.getItem(storageKeyTheme)) {
+        return localStorage.getItem(storageKeyTheme);
     } else {
         return window.matchMedia("(prefers-color-scheme: dark)").matches
             ? "dark"
@@ -17,13 +17,13 @@ const getColorPreference = function () {
 };
 
 /* Store theme preference in local storage and update UI */
-const setPreference = function () {
-    localStorage.setItem(storageKey, theme.value);
-    reflectPreference();
+const setThemePreference = function () {
+    localStorage.setItem(storageKeyTheme, theme.value);
+    reflectThemePreference();
 };
 
 /* Updates UI with theme preference by modifying html data attribute and toggle classes */
-const reflectPreference = function () {
+const reflectThemePreference = function () {
     document.firstElementChild.setAttribute("data-theme", theme.value);
 
     // for screen reader accessibility
@@ -52,7 +52,7 @@ const theme = {
 };
 
 // set theme right away, before loading css and rest of html
-reflectPreference();
+reflectThemePreference();
 
 window.onload = () => {
     // get toggle elements on page and add event listener
@@ -62,11 +62,11 @@ window.onload = () => {
         .querySelector(".theme-toggle-btn")
         .addEventListener("click", () => {
             theme.value = theme.value === "light" ? "dark" : "light";
-            setPreference();
+            setThemePreference();
         });
 
     // call again on load so that aria-label updates and screen readers get latest value
-    reflectPreference();
+    reflectThemePreference();
 };
 
 // stay synchronized with system preference
@@ -74,5 +74,5 @@ window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", ({ matches: isDark }) => {
         theme.value = isDark ? "dark" : "light";
-        setPreference();
+        setThemePreference();
     });
