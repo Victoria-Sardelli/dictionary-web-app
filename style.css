@@ -74,11 +74,17 @@ h2 {
     --search-bar-color: var(--light-black);
 }
 
-:root[data-font="Mono"] {
+.dropdown-option-btn[data-font-option="Sans Serif"] {
+    font-family: var(--sans-serif);
+}
+
+:root[data-font="Mono"],
+.dropdown-option-btn[data-font-option="Mono"] {
     font-family: var(--mono);
 }
 
-:root[data-font="Serif"] {
+:root[data-font="Serif"],
+.dropdown-option-btn[data-font-option="Serif"] {
     font-family: var(--serif);
 }
 
