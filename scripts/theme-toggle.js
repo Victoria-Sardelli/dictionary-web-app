@@ -1,14 +1,18 @@
 "use strict";
 
 const storageKeyTheme = "theme-preference";
+const defaultTheme = "light";
 
 // dark theme toggle elements
 let slider, toggleIcon;
 
-/* Get theme preference from local storage if exists, otherwise check */
+/* 
+Get theme preference from local storage if exists, otherwise use prefers-color-scheme value.
+If locally stored value is null or undefined, use default theme instead
+*/
 const getColorPreference = function () {
     if (localStorage.getItem(storageKeyTheme)) {
-        return localStorage.getItem(storageKeyTheme);
+        return localStorage.getItem(storageKeyTheme) ?? defaultTheme;
     } else {
         return window.matchMedia("(prefers-color-scheme: dark)").matches
             ? "dark"

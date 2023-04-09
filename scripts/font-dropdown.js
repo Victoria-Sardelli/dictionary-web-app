@@ -11,10 +11,11 @@ const fontDropdownBtnText = document.querySelector(
 const fontDropdownContent = document.querySelector(".dropdown-content");
 const fontDropdownOptions = document.querySelectorAll(".dropdown-option-btn");
 
-/* Get font preference from local storage if exists, otherwise return default */
+/* Get font preference from local storage if exists, otherwise use default font.
+If locally stored value is null or undefined, use default font instead */
 const getFontPreference = function () {
     if (localStorage.getItem(storageKeyFont)) {
-        return localStorage.getItem(storageKeyFont);
+        return localStorage.getItem(storageKeyFont) ?? defaultFont;
     } else {
         return defaultFont;
     }
