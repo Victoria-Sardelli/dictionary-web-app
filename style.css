@@ -59,6 +59,7 @@ h2 {
     --slider-background-color: var(--gray);
     --dark-toggle-icon-stroke-color: var(--dark-gray);
     --search-bar-color: var(--grayish-white);
+    --divider-color: var(--very-light-gray);
 }
 
 :root[data-theme="dark"] {
@@ -72,6 +73,7 @@ h2 {
     --slider-background-color: var(--gray);
     --dark-toggle-icon-stroke-color: var(--purple);
     --search-bar-color: var(--light-black);
+    --divider-color: var(--very-dark-gray);
 }
 
 .dropdown-option-btn[data-font-option="Sans Serif"] {
@@ -461,7 +463,7 @@ body {
     content: "";
     flex: 1;
     min-height: 0.063rem;
-    background-color: var(--very-light-gray);
+    background-color: var(--divider-color);
 }
 
 .source-urls-and-header,
