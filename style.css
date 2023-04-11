@@ -340,11 +340,14 @@ body {
 .search-error-title {
     margin: 1.5rem 0 0 0;
     font-size: 1.25rem;
+    font-weight: bold;
 }
 
 .search-error-subtitle {
     margin: 1.125rem 0 0 0;
+    font-size: 1.125rem;
     text-align: center;
+    line-height: 1.5rem;
 }
 
 /* valid response content */
@@ -554,6 +557,10 @@ body {
         padding: 3.625rem 2.5rem 7.375rem 2.5rem;
     }
 
+    .initial-heading {
+        font-size: 1.25rem;
+    }
+
     .preference-controls {
         font-size: 1.125rem;
     }
@@ -624,5 +631,12 @@ body {
 
     .source-urls-container {
         margin: 0;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1440px) {
+    body {
+        padding: 3.625rem 22rem 7.75rem 22rem;
     }
 }
