@@ -190,16 +190,25 @@ const displayResults = function (data) {
         }
         // append source url(s) at bottom of article
         if (wordItem.sourceUrls.length > 0) {
+            // Wrapper div to hold decorative border pseudo-element seperate from section header and source URLS
+            const sourceUrlsSection = document.createElement("div");
+            sourceUrlsSection.className = "source-urls-section";
+
+            // Wraps section header and source urls
+            const sourceUrlsAndHeader = document.createElement("div");
+            sourceUrlsAndHeader.className = "source-urls-and-header";
+
+            // Wraps source url links
             const sourceUrlsContainer = document.createElement("div");
             sourceUrlsContainer.className = "source-urls-container";
 
             // append sources section header to container
-            const sourceUrlsHeading = initElemWithText({
+            const sourceUrlsHeader = initElemWithText({
                 elemType: "h4",
-                elemClass: "source-urls-heading",
+                elemClass: "source-urls-header",
                 elemText: "Source",
             });
-            sourceUrlsContainer.append(sourceUrlsHeading);
+            sourceUrlsAndHeader.append(sourceUrlsHeader);
 
             // append source url to container
             for (const sourceUrl of wordItem.sourceUrls) {
@@ -215,7 +224,9 @@ const displayResults = function (data) {
                 sourceUrlsContainer.append(sourceElem);
             }
 
-            article.append(sourceUrlsContainer);
+            sourceUrlsAndHeader.append(sourceUrlsContainer);
+            sourceUrlsSection.append(sourceUrlsAndHeader);
+            article.append(sourceUrlsSection);
         }
 
         // display article in search results section
