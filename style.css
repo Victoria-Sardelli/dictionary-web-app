@@ -541,3 +541,30 @@ body {
 .synonym-antonym:focus {
     text-decoration: underline;
 }
+
+/* TABLET */
+@media (min-width: 768px) {
+    .preference-controls {
+        font-size: 1.125rem;
+    }
+
+    .word {
+        font-size: 4rem;
+    }
+
+    .phonetic {
+        font-size: 1.5rem;
+    }
+
+    .part-of-speech {
+        font-size: 1.5rem;
+    }
+
+    .definition {
+        font-size: 1.125rem;
+    }
+
+    .list-title {
+        font-size: 1.25rem;
+    }
+}
